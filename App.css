@@ -1,0 +1,113 @@
+/* App.css */
+
+body {
+  font-family: 'Hurme Geometric Sans 4', sans-serif;
+  background-image: url('./background.png');
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 50px;
+  font-size: 48px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(241, 241, 247);
+  border-radius: 20px;
+  padding: 3em 3em;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.first{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.location{
+  width: 100%;
+}
+
+select {
+  width: 100%;
+  display: flexbox;
+  margin: 20px 0px;
+  padding: 15px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input[type='text'] {
+  width: 70%;
+  padding: 15px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 20px;
+  margin: 20px 0px;
+}
+
+option {
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+  transform: scale(1.5);
+  margin: 20px 15px;
+}
+
+button {
+  padding: 15px 20px;
+  background-color:#34e24e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: rgb(57, 156, 30);
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label,
+input[type="text"] + label {
+  margin-right: 15px;
+  font-size: 24px;
+}
+
+input[type="radio"]:not(:first-child) + label,
+input[type="checkbox"]:not(:first-child) + label {
+  margin-left: 10px;
+  font-size: 24px;
+}
