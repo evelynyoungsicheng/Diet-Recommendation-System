@@ -1,0 +1,35 @@
+food_id,name,main_ingredients,description,health_benefits,food_class,region,spice_level,price_range,full_description,serving_size,calorie_content,lactose_free,low_carb,vegetarian,meal_type
+101,Jollof Rice,Rice Tomatoes Peppers,A popular West African rice dish,Rich in vitamins & energy-dense,Main,Southwest,Medium,Affordable,Rice cooked with tomatoes and spices,1 cup,300,TRUE,FALSE,FALSE,Lunch
+102,Okra Soup,Okra Fish Palm oil,Traditional soup with okra,High in fiber & vitamins,Soup,Southeast,Low,Affordable,Soup made with okra and assorted fish,1 cup,150,TRUE,TRUE,FALSE,Lunch
+103,Moi Moi,Beans & Peppers & Onions,Steamed bean pudding,Protein-rich & low glycemic,Snack,North Central,Low,Affordable,Steamed pudding made from blended beans,1 wrap,200,TRUE,TRUE,TRUE,Breakfast
+104,Efo Riro,Spinach & Fish & Palm oil,Spicy spinach stew,Rich in iron and vitamins,Main,Southwest,High,Affordable,Spicy stew made with spinach and fish,1 cup,180,TRUE,TRUE,FALSE,Lunch
+105,Amala and Ewedu,Yam flour & Jute leaves,Traditional Yoruba dish,Low glycemic & high in fiber,Main,Southwest,Medium,Affordable,Yam flour with a jute leaf soup,1 serving,250,TRUE,TRUE,FALSE,Dinner
+106,Edikang Ikong,Pumpkin leaves & Spinach,Nutritious vegetable soup,High in vitamins and minerals,Soup,South-South,Low,Expensive,Soup made with pumpkin leaves and spinach,1 cup,120,TRUE,TRUE,TRUE,Dinner
+107,Afang Soup,Okazi leaves & Waterleaf,Traditional Efik/Ibibio soup,High in fiber & rich in vitamins,Soup,South-South,High,Expensive,Soup made with okazi and waterleaf,1 cup,180,TRUE,TRUE,TRUE,Dinner
+108,Ogi and Akara,Fermented corn & Beans,Fermented corn porridge with bean fritters,Rich in protein and fiber,Breakfast,Southwest,Low,Affordable,Porridge with crispy bean fritters,1 cup,350,TRUE,FALSE,TRUE,Breakfast
+109,Beans and Plantain,Beans & Plantain,Fried beans with sweet plantain,High protein and fiber content,Main,Southwest,Medium,Affordable,Mashed beans with fried plantains,1 plate,400,TRUE,TRUE,TRUE,Lunch
+110,Egusi Soup,Melon seeds & Leafy greens,Rich soup with melon seeds,Rich in vitamins and minerals,Soup,Southwest,High,Affordable,Soup made with ground melon seeds and vegetables,1 cup,350,TRUE,TRUE,FALSE,Dinner
+111,Ogbono Soup,Ogbono seeds & Leafy greens,Thick soup made from Ogbono seeds,High in fiber & low in carbs,Soup,Southeast,Medium,Affordable,Soup made with ground Ogbono seeds and vegetables,1 cup,200,TRUE,TRUE,TRUE,Dinner
+112,Bitterleaf Soup,Bitterleaf & Assorted meats,Traditional soup with bitter leaves,High in iron and vitamins,Soup,South-South,Medium,Affordable,Soup made with bitter leaves and assorted meats,1 cup,180,TRUE,TRUE,FALSE,Dinner
+113,Oatmeal,Oats & Water,Porridge made from oats,Rich in fiber & low glycemic,Main,North Central,Low,Affordable,Simple porridge made from oats and water,1 cup,150,TRUE,TRUE,TRUE,Breakfast
+114,Boiled Yam and Egg Sauce,Yam & Eggs & Tomatoes,Boiled yam with tomato and egg sauce,High in protein and fiber,Main,Southwest,Medium,Affordable,Boiled yam served with tomato and egg sauce,1 plate,300,TRUE,FALSE,FALSE,Lunch
+115,Pepper Soup,Fish & Pepper,Spicy soup made with assorted meats or fish,Rich in protein and vitamins,Soup,South-South,High,Affordable,Spicy and flavorful soup,1 bowl,100,TRUE,TRUE,FALSE,Dinner
+116,Masa,Rice flour & Yeast,Fermented rice cake,Rich in carbohydrates and low glycemic index,Snack,Northwest,Low,Affordable,Rice cakes made with fermented rice flour,1 serving,150,TRUE,FALSE,TRUE,Breakfast
+117,Ofada Rice and Ayamase,Ofada rice & Green bell peppers,Traditional rice and spicy pepper sauce,Rich in fiber and vitamins,Main,Southwest,High,Expensive,Local rice with spicy sauce,1 plate,450,TRUE,TRUE,FALSE,Lunch
+118,Ukodo,Yam & Fish,Traditional soup with yam and fish,Rich in protein and carbohydrates,Main,South-South,Low,Affordable,Traditional yam and fish pepper soup,1 bowl,300,TRUE,TRUE,FALSE,Dinner
+119,Ikokore,Water yam & Fish,Yam pudding with fish,High in fiber and protein,Main,Southwest,Medium,Affordable,Porridge made from grated water yam and fish,1 plate,350,TRUE,TRUE,FALSE,Lunch
+120,Rice and Fish Stew,Rice & Fish & Tomatoes,Simple meal of rice and stew,Rich in protein and vitamins,Main,Southwest,Medium,Affordable,Boiled rice with fish stew,1 plate,400,TRUE,FALSE,FALSE,Lunch
+121,Akara,Beans,Palm oil & Fried bean cake,High protein & low fat,Snack,Southwest,Medium,Affordable,Fried bean cakes,1 serving,200,TRUE,FALSE,TRUE,Breakfast
+122,Unripe Plantain Porridge,Unripe plantain & Vegetables,Plantain porridge with vegetables,Low glycemic & high in fiber,Main,Southeast,Low,Affordable,Porridge made from unripe plantains and vegetables,1 plate,200,TRUE,TRUE,TRUE,Lunch
+123,Ewedu Soup,Jute leaves & Ground crayfish,Traditional soup made from jute leaves,Rich in vitamins and minerals,Soup,Southwest,Low,Affordable,Simple soup made with jute leaves,1 cup,100,TRUE,TRUE,TRUE,Dinner
+124,Tuwo Shinkafa,Rice flour & Water,Porridge made from rice flour,Low glycemic & high in fiber,Main,Northwest,Low,Affordable,Thick porridge made from rice flour,1 serving,250,TRUE,TRUE,TRUE,Dinner
+125,Akamu and Moi Moi,Corn flour & Beans,Fermented corn porridge with bean pudding,High in protein and fiber,Main,Southwest,Low,Affordable,Porridge made from fermented corn and bean pudding,1 plate,300,TRUE,FALSE,TRUE,Breakfast
+126,Nkwobi,Cow foot & Palm oil,Spicy cow foot dish,Rich in protein,Main,Southeast,High,Expensive,Spicy dish made from cow foot,1 serving,350,TRUE,FALSE,FALSE,Dinner
+127,Efo Egusi,Spinach & Melon seeds,Stew made with spinach and melon seeds,High in protein and vitamins,Soup,Southwest,Medium,Affordable,Stew made with spinach and ground melon seeds,1 cup,300,TRUE,TRUE,FALSE,Dinner
+128,Suya,Beef & Spices,Grilled spiced beef,High protein & low fat,Snack,North,High,Affordable,Grilled beef skewers with spices,1 stick,250,TRUE,FALSE,FALSE,Dinner
+129,Isiewu,Goat head  & Palm oil,Spicy goat head dish,High in protein and fats,Main,Southeast,High,Expensive,Spicy goat head delicacy,1 serving,400,TRUE,FALSE,FALSE,Dinner
+130,Boiled Sweet Potatoes and Fish Stew,Sweet potatoes & Fish & Tomatoes,Simple meal of boiled sweet potatoes and stew,Low glycemic & high in fiber,Main,Southwest,Low,Affordable,Boiled sweet potatoes with fish stew,1 plate,350,TRUE,FALSE,FALSE,Lunch
+131,Eba and Egusi Soup,Cassava flour & Melon seeds,Traditional meal with cassava dough and melon seed soup,Low glycemic & high in fiber,Main,Southeast,High,Affordable,Cassava dough with melon seed soup,1 plate,400,TRUE,TRUE,FALSE,Dinner
+132,Vegetable Salad,Lettuce & Tomatoes & Cucumber,Fresh vegetable salad,Rich in vitamins and low in calories,Side,All regions,Low,Affordable,Mixed fresh vegetables with light dressing,1 bowl,100,TRUE,TRUE,TRUE,Breakfast
+133,Ogbono and Okra Soup,Ogbono seeds & Okra,Leafy soup with Ogbono and Okra,High in fiber & low in carbs,Soup,Southeast,Medium,Affordable,Thick soup made with Ogbono and Okra,1 cup,150,TRUE,TRUE,TRUE,Dinner
+134,Yam Porridge,Yam & Vegetables,Yam porridge with vegetables,High in fiber and vitamins,Main,Southwest,Medium,Affordable,Yam porridge with leafy greens,1 plate,300,TRUE,FALSE,TRUE,Breakfast
