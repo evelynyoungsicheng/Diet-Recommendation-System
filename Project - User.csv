@@ -1,6 +1,0 @@
-user_id,location,diabetes_type,lactose_intolerant,low_carb,vegetarian,gender
-1,Southwest,Type 2,Yes,No,No,Male
-2,Southeast,Type 1,No,Yes,No,Female
-3,South-South,Gestational,Yes,Yes,Yes,Female
-4,North Central,Type 2,No,Yes,Yes,Male
-5,Northwest,Type 2,No,No,No,Female
