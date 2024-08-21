@@ -10,15 +10,47 @@ function App() {
   const [userId, setUserId] = useState('');
   const [preferences, setPreferences] = useState({
     lactoseIntolerant: true,
-    lowCarb: true,
-    vegetarian: false,
-    region: 'Northwest'
+    lowCarb: null,
+    vegetarian: null,
+    region: location
   });
 
   const handleSubmit = async(event) => {
     event.preventDefault();
-    // Submit user preferences to the backend API
-    // Fetch recommendations and display them
+
+    // Construct the preferences object
+    const updatedPreferences = {
+      lactose_free: preferences.lactoseIntolerant,
+      low_carb: preferences.lowCarb,
+      vegetarian: preferences.vegetarian,
+      region: preferences.region
+    };
+
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/recommend',
+        {
+          user_id: 1,
+          preferences: {
+            updatedPreferences
+          }
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );    
+  
+      if (response.statusText = 'OK') {
+        const data = await response.data;
+        setRecommendations(data);
+      } else {
+        console.error('Error:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -28,24 +60,27 @@ function App() {
 
         <div className='first'>
           <div>
-          <label>User ID:</label>
-          <input type="text" 
-          value={userId} 
-          onChange={(e) => setUserId(e.target.value)} />
+            <label>User ID:</label>
+            <input 
+              type="text" 
+              value={userId} 
+              onChange={(e) => setUserId(e.target.value)} 
+            />
           </div>
 
           <div className='location'>
-          <label>Choose Location:</label>
-          <select value={location} onChange={(e) => setLocation(e.target.value)}>
-            <option value="northwest">NorthWest</option>
-            <option value="northeast">NorthEast</option>
-            <option value="northcentral">North Central</option>
-            <option value="southwest">SouthWest</option>
-            <option value="southeast">SouthEast</option>
-            <option value="southsouth">South-South</option>
-          </select>
+            <label>Choose Location:</label>
+            <select value={location} onChange={(e) => setLocation(e.target.value)}>
+              <option value="Northwest">NorthWest</option>
+              <option value="Northeast">NorthEast</option>
+              <option value="Northcentral">North Central</option>
+              <option value="Southwest">SouthWest</option>
+              <option value="Southeast">SouthEast</option>
+              <option value="Southsouth">South-South</option>
+            </select>
           </div>
         </div>
+
         <div>
           <label>Gender:</label>
           <input
@@ -63,6 +98,7 @@ function App() {
           />
           Female
         </div>
+
         <div>
           <label>Type of Diabetes:</label>
           <input
@@ -87,6 +123,7 @@ function App() {
           />
           Gestational
         </div>
+
         <div>
           <label>Preferences:</label>
           <input
@@ -116,8 +153,35 @@ function App() {
         </div>
         <button type="submit">Get Recommendations</button>
       </form>
+
+      <div style={{ color: "black", backgroundColor: "white" }}>
+      {recommendations && (
+        <div>
+          <h2>Meal Recommendations</h2>
+          {recommendations.Breakfast && (
+            <div>
+              <h3>Breakfast</h3>
+              <p>{recommendations.Breakfast[0][0]}: {recommendations.Breakfast[0][1]}</p>
+            </div>
+          )}
+          {recommendations.Lunch && (
+            <div>
+              <h3>Lunch</h3>
+              <p>{recommendations.Lunch[0][0]}: {recommendations.Lunch[0][1]}</p>
+            </div>
+          )}
+          {recommendations.Dinner && (
+            <div>
+              <h3>Dinner</h3>
+              <p>{recommendations.Dinner[0][0]}: {recommendations.Dinner[0][1]}</p>
+            </div>
+          )}
+        </div>
+      )}
+      </div>
     </div>
   );
 }
 
 export default App;
+
