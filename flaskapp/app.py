@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics.pairwise import cosine_similarity
+from flask_cors import CORS
 
 # Initialize the Flask app
 app = Flask(__name__)
@@ -80,6 +81,7 @@ def recommend(user_id, preferences, n_recommendations=1):
 
     return recommendations
 
+CORS(app)
 # API endpoint to get recommendations
 @app.route('/recommend', methods=['POST'])
 def get_recommendation():
