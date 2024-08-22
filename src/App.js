@@ -9,10 +9,10 @@ function App() {
   const [gender, setGender] = useState('');
   const [userId, setUserId] = useState('');
   const [preferences, setPreferences] = useState({
-    lactoseIntolerant: true,
-    lowCarb: null,
-    vegetarian: null,
-    region: location
+    lactose_free: true,
+    low_carb: true,
+    vegetarian: false,
+    region: 'Southwest',
   });
 
   const handleSubmit = async(event) => {
