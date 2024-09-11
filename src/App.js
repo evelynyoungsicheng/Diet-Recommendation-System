@@ -1,39 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css'; // Import the CSS file
 import axios from 'axios';
 
 function App() {
   const [recommendations, setRecommendations] = useState({});
-  const [location, setLocation] = useState('');
+  const [region, setRegion] = useState('');
   const [diabetesType, setDiabetesType] = useState('');
   const [gender, setGender] = useState('');
   const [userId, setUserId] = useState('');
   const [preferences, setPreferences] = useState({
     lactose_free: true,
-    low_carb: true,
+    low_carb: false,
     vegetarian: false,
-    region: 'Southwest',
+    region: 'South-South',
   });
+
+  const resultsRef = useRef(null); // Creates a reference to the results element
+
 
   const handleSubmit = async(event) => {
     event.preventDefault();
 
+    // Update the preferences state with the selected region
+    setPreferences((prev) => ({ ...prev, region: region }));
+
+
+
     // Construct the preferences object
     const updatedPreferences = {
-      lactose_free: preferences.lactoseIntolerant,
-      low_carb: preferences.lowCarb,
+      lactose_free: preferences.lactose_free,
+      low_carb: preferences.low_carb,
       vegetarian: preferences.vegetarian,
       region: preferences.region
     };
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/recommend',
+        'http://localhost:5001/recommend',
         {
           user_id: 1,
-          preferences: {
-            updatedPreferences
-          }
+          preferences:  updatedPreferences
         },
         {
           headers: {
@@ -45,44 +51,51 @@ function App() {
       if (response.statusText = 'OK') {
         const data = await response.data;
         setRecommendations(data);
+
+        // Scroll to the results element
+        resultsRef.current.scrollIntoView({ behavior: 'smooth' });
       } else {
         console.error('Error:', response.statusText);
       }
     } catch (error) {
       console.error('Error:', error);
+      
     }
   };
 
   return (
     <div>
-      <h1>Diabetes-Diet Recommendation System</h1>
+      <h1>Diet Recommender System For Diabetics</h1>
       <form onSubmit={handleSubmit}>
 
         <div className='first'>
           <div>
-            <label>User ID:</label>
+            <label>User ID:  </label>
             <input 
+              name='userId'
               type="text" 
               value={userId} 
               onChange={(e) => setUserId(e.target.value)} 
             />
           </div>
 
-          <div className='location'>
-            <label>Choose Location:</label>
-            <select value={location} onChange={(e) => setLocation(e.target.value)}>
-              <option value="Northwest">NorthWest</option>
-              <option value="Northeast">NorthEast</option>
-              <option value="Northcentral">North Central</option>
+          <div className='region'>
+            <label>Choose Region: </label>
+            <select name='region' value={region} onChange={(e) => setRegion(e.target.value)}>
+              <option value="">Select Region</option>
+              <option value="All regions">All Regions</option>
               <option value="Southwest">SouthWest</option>
               <option value="Southeast">SouthEast</option>
-              <option value="Southsouth">South-South</option>
+              <option value="South-South">South-South</option>
+              <option value="Northwest">NorthWest</option>
+              <option value="Northeast">NorthEast</option>
+              <option value="North Central">North Central</option>
             </select>
           </div>
         </div>
 
         <div>
-          <label>Gender:</label>
+          <label>Gender: </label>
           <input
             type="radio"
             name="Gender"
@@ -97,10 +110,11 @@ function App() {
             onChange={() => setGender('Female')}
           />
           Female
+          
         </div>
 
         <div>
-          <label>Type of Diabetes:</label>
+          <label>Type of Diabetes: </label>
           <input
             type="radio"
             name="diabetesType"
@@ -122,19 +136,22 @@ function App() {
             onChange={() => setDiabetesType('Gestational')}
           />
           Gestational
+          
         </div>
 
         <div>
-          <label>Preferences:</label>
+          <label>Preferences: </label>
           <input
+            name='lactose_free'
             type="checkbox"
-            checked={preferences.lactoseIntolerant}
+            checked={preferences.lactose_free}
             onChange={() =>
-              setPreferences((prev) => ({ ...prev, lactoseIntolerant: !prev.lactoseIntolerant }))
+              setPreferences((prev) => ({ ...prev, lactose_free: !prev.lactose_free }))
             }
           />
-          Lactose Intolerant
+          Lactose Free
           <input
+            name='low_carb'
             type="checkbox"
             checked={preferences.lowCarb}
             onChange={() =>
@@ -143,6 +160,7 @@ function App() {
           />
           Low Carb
           <input
+            name='vegetarian'
             type="checkbox"
             checked={preferences.vegetarian}
             onChange={() =>
@@ -150,34 +168,38 @@ function App() {
             }
           />
           Vegetarian
+          
         </div>
         <button type="submit">Get Recommendations</button>
       </form>
 
-      <div style={{ color: "black", backgroundColor: "white" }}>
-      {recommendations && (
-        <div>
-          <h2>Meal Recommendations</h2>
-          {recommendations.Breakfast && (
-            <div>
-              <h3>Breakfast</h3>
-              <p>{recommendations.Breakfast[0][0]}: {recommendations.Breakfast[0][1]}</p>
+
+      <div className="recommendations" ref={resultsRef}>
+        {recommendations && (
+          <div>
+            <h2>Your Meal Recommendations for Today</h2>
+            <div className="meal-recommendations">
+              {recommendations.Breakfast && (
+                <div className="meal-column">
+                  <h3>Breakfast</h3>
+                  <p>{recommendations.Breakfast[0][0]}: {recommendations.Breakfast[0][1]}</p>
+                </div>
+              )}
+              {recommendations.Lunch && (
+                <div className="meal-column">
+                  <h3>Lunch</h3>
+                  <p>{recommendations.Lunch[0][0]}: {recommendations.Lunch[0][1]}</p>
+                </div>
+              )}
+              {recommendations.Dinner && (
+                <div className="meal-column">
+                  <h3>Dinner</h3>
+                  <p>{recommendations.Dinner[0][0]}: {recommendations.Dinner[0][1]}</p>
+                </div>
+              )}
             </div>
-          )}
-          {recommendations.Lunch && (
-            <div>
-              <h3>Lunch</h3>
-              <p>{recommendations.Lunch[0][0]}: {recommendations.Lunch[0][1]}</p>
-            </div>
-          )}
-          {recommendations.Dinner && (
-            <div>
-              <h3>Dinner</h3>
-              <p>{recommendations.Dinner[0][0]}: {recommendations.Dinner[0][1]}</p>
-            </div>
-          )}
-        </div>
-      )}
+          </div>
+        )}
       </div>
     </div>
   );
