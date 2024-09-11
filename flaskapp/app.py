@@ -1,42 +1,32 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics.pairwise import cosine_similarity
-from flask_cors import CORS
 
 # Initialize the Flask app
 app = Flask(__name__)
+CORS(app, origins=['http://localhost:3000'], methods=['POST', 'GET'], headers=['Content-Type'])
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
+db = SQLAlchemy(app)
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(100), unique=True, nullable=False)
+    preferences = db.Column(db.String(200), nullable=False)
+    recommendations = db.Column(db.String(200), nullable=True)
+
 
 # Load data
 df_foods = pd.read_csv("./csvs/Project - food.csv")
 df_preferences = pd.read_csv("./csvs/Project - User.csv")
 df_ratings = pd.read_csv("./csvs/Project - ratings.csv")
 
-# Preprocess data
-df_ratings['like'] = df_ratings['rating'].apply(lambda x: 1 if x >= 3 else 0)
-df_features = df_ratings.merge(df_foods, on='food_id').merge(df_preferences, on='user_id')
 
-# Features to use
-features = ['lactose_free', 'low_carb_y', 'vegetarian_y', 'region', 'meal_type']
-X = df_features[features]
-y = df_features['like']
-
-# One-hot encode non-numeric columns
-non_numeric_columns = X.select_dtypes(exclude=['number']).columns
-encoder = OneHotEncoder(handle_unknown='ignore')
-X_encoded = pd.DataFrame(encoder.fit_transform(X[non_numeric_columns]).toarray())
-
-# Final feature set
-X_final = pd.concat([X.drop(non_numeric_columns, axis=1), X_encoded], axis=1)
-
-# Train-test split
-X_train, X_test, y_train, y_test = train_test_split(X_final, y, test_size=0.2, random_state=42)
-
-# Train the model
-model = LogisticRegression()
-model.fit(X_train, y_train)
 
 # Create a user-item matrix
 user_item_matrix = df_ratings.pivot(index='user_id', columns='food_id', values='rating').fillna(0)
@@ -48,22 +38,22 @@ item_similarity_df = pd.DataFrame(item_similarity, index=user_item_matrix.column
 # Function to make recommendations
 def recommend(user_id, preferences, n_recommendations=1):
     lactose_free = preferences.get('lactose_free', None)
-    low_carb = preferences.get('low_carb', None)
+    lowCarb = preferences.get('lowCarb', None)
     vegetarian = preferences.get('vegetarian', None)
     region = preferences.get('region', None)
 
     filtered_foods = df_foods.copy()
     if lactose_free is not None:
         filtered_foods = filtered_foods[filtered_foods['lactose_free'] == lactose_free]
-    if low_carb is not None:
-        filtered_foods = filtered_foods[filtered_foods['low_carb'] == low_carb]
+    if lowCarb is not None:
+        filtered_foods = filtered_foods[filtered_foods['lowCarb'] == lowCarb]
     if vegetarian is not None:
         filtered_foods = filtered_foods[filtered_foods['vegetarian'] == vegetarian]
-    if region is not None:
+    if region is not None and 'region' in df_foods.columns:
         filtered_foods = filtered_foods[filtered_foods['region'] == region]
 
     user_ratings = user_item_matrix.loc[user_id]
-    rated_items = user_ratings[user_ratings > 0].index.tolist()
+    rated_items = user_ratings[user_ratings >= 0].index.tolist()
 
     scores = item_similarity_df[rated_items].dot(user_ratings[rated_items]).div(item_similarity_df[rated_items].sum(axis=1))
 
@@ -81,16 +71,15 @@ def recommend(user_id, preferences, n_recommendations=1):
 
     return recommendations
 
-CORS(app)
-# API endpoint to get recommendations
+
 @app.route('/recommend', methods=['POST'])
-def get_recommendation():
-    data = request.json
-    user_id = data.get('user_id')
-    preferences = data.get('preferences', {})
-    recommendations = recommend(user_id, preferences)
+def get_recommendations():
+    data = request.get_json()
+    user_id = data['user_id']
+    preferences = data['preferences']
+    n_recommendations = data.get('n_recommendations', 1)
+    recommendations = recommend(user_id, preferences, n_recommendations)
     return jsonify(recommendations)
 
-# Run the Flask app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
