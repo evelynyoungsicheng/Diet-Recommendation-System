@@ -1,13 +1,13 @@
 /* App.css */
 
 body {
-  font-family: 'Hurme Geometric Sans 4', sans-serif;
+  font-family: 'Hurme Geometric Sans 1', sans-serif;
   background-image: url('./background.png');
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.9);
   width: 100%;
@@ -29,6 +29,7 @@ form {
   background-color: rgb(241, 241, 247);
   border-radius: 20px;
   padding: 3em 3em;
+  margin-bottom: 30px;
 }
 
 form div {
@@ -37,23 +38,27 @@ form div {
 
 label {
   font-weight: bold;
-  margin-bottom: 5px;
   display: block;
 }
 
 .first{
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: start;
+  justify-content: space-between;
 }
 
-.location{
+.name{
+  width: 100%;
+}
+
+.region{
   width: 100%;
 }
 
 select {
   width: 100%;
-  display: flexbox;
+  display: flex;
   margin: 20px 0px;
   padding: 15px 10px;
   border: 1px solid #ddd;
@@ -63,7 +68,7 @@ select {
 }
 
 input[type='text'] {
-  width: 70%;
+  width: 80%;
   padding: 15px 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -110,4 +115,71 @@ input[type="radio"]:not(:first-child) + label,
 input[type="checkbox"]:not(:first-child) + label {
   margin-left: 10px;
   font-size: 24px;
+}
+
+.meal-recommendations {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 900px; /* Add a max-width to prevent it from expanding too much */
+}
+
+.meal-column {
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid rgb(77, 65, 98);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.meal-column h3 {
+  margin-top: 0;
+}
+
+.meal-column p {
+  font-size: 16px;
+  color: #666;
+}
+
+.recommendations {
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: white;  
+  background-color: black;
+
+}
+
+.recommendations h2 {
+  margin: 20px;
+}
+
+.recommendations ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recommendations li {
+  margin-bottom: 20px;
+}
+
+.recommendations h3 {
+  margin-top: 0;
+}
+
+.recommendations p {
+  font-size: 16px;
+  color: #fafafa;
+}
+
+.rate{
+  align-self: center;
+  background-color: burlywood;
+  color: black;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
 }
