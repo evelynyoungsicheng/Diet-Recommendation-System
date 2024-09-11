@@ -75,6 +75,8 @@ def recommend(user_id, preferences, n_recommendations=1):
 @app.route('/recommend', methods=['POST'])
 def get_recommendations():
     data = request.get_json()
+    print("Request Data: ")
+    print(data)
     user_id = data['user_id']
     preferences = data['preferences']
     n_recommendations = data.get('n_recommendations', 1)
